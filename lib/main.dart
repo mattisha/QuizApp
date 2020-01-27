@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'questions.dart';
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(MaterialApp(
       home: Quizzler(),
@@ -12,12 +14,7 @@ class Quizzler extends StatefulWidget {
 
 class _QuizzlerState extends State<Quizzler> {
   List<Icon> scoreKeeper = [];
-  List question = [
-    'you can walk cow down stairs not upstairs',
-    'the blood slug is green',
-    'would you be surprised if you can complete this challange'
-  ];
-  List<bool> answers = [true, false, true];
+
   int questionNumber = 0;
 
   @override
@@ -35,7 +32,7 @@ class _QuizzlerState extends State<Quizzler> {
                 padding: const EdgeInsets.all(15.0),
                 child: Center(
                   child: Text(
-                    question[questionNumber],
+                    quizBrain.questionBank[questionNumber].question,
                     style: TextStyle(fontSize: 20, color: Colors.white),
                     textAlign: TextAlign.center,
                   ),
@@ -52,7 +49,8 @@ class _QuizzlerState extends State<Quizzler> {
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   onPressed: () {
-                    bool correct = answers[questionNumber];
+                    bool correct =
+                        quizBrain.questionBank[questionNumber].answer;
                     if (correct == true) {
                       print('correct');
                     } else {
@@ -77,7 +75,8 @@ class _QuizzlerState extends State<Quizzler> {
                     style: TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   onPressed: () {
-                    bool correct = answers[questionNumber];
+                    bool correct =
+                        quizBrain.questionBank[questionNumber].answer;
                     if (correct == false) {
                       print('correct');
                     } else {
